@@ -15,10 +15,25 @@ let appData = {
 for (let i = 0; i < 2; i++) {
   let a = prompt('Введите обязательную сталью расходов в этом месяце', ""),
     b = prompt('Во сколько обойдётся?', '');
-  appData.expenses[a] = b;
+
+  if (typeof (a) === 'string' && typeof (a) != null && typeof (b) != null && a != '' && b != '' && a.length < 50) {
+    console.log('done');
+    appData.expenses[a] = b;
+  } else {
+    console.log('no done');
+    i--
+  }
+  
 }
 
-console.log(appData.expenses);
-alert('Бюджет на 1 день = ' + money / 30 + ' руб');
-console.log('Бюджет на 1 день = ' + money / 30 + ' руб');
-console.log(`Бюджет на 1 день = ${money / 30} руб`);
+let moneyPerDay = appData.budget/30;
+
+if ( moneyPerDay < 100) {
+  console.log("Минимальный уровень достатка");
+}else if (moneyPerDay > 100 && moneyPerDay < 2000) {
+  console.log("Средний уровень достатка");
+}else if (moneyPerDay > 2000) {
+  console.log("Высокий уровень достатка");
+}else {
+  console.log("Произошла ошибка");
+}
